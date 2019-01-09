@@ -77,17 +77,29 @@ a {
 }
 
 .search-result__item {
-  width: 50%;
+  width: 100%;
   margin-left: auto;
   margin-right: auto;
   display: flex;
   flex-direction: column;
 }
 
+@media(min-width: 480px) { 
+  .search-result__item {
+    width: 80%;
+  }
+}
+
+@media(min-width: 768px) {
+  .search-result__item {
+    width: 50%;
+  }
+}
+
 .search-result__item-title {
   width: 100%;
   margin-top: 0;
-  line-height: 1;
+  line-height: 1; 
 }
 
 .search-result__item-image {
