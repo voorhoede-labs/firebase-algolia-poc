@@ -32,3 +32,15 @@ exports.removeMovies = functions.firestore
             return index.deleteObject(objectID);
         }
     });
+
+exports.updateMovies = functions.firestore
+    .document('movies/{movieId}')
+    .onUpdate((change, context) => {
+        const newData = change.after.data();
+        const object = {
+            objectID: context.params.movieId,
+            ...newData
+        }
+
+        return index.partialUpdateObject(object);
+    })
