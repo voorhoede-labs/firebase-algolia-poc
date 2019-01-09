@@ -8,12 +8,26 @@
       <ais-search-box></ais-search-box>
       <ais-results>
         <template slot-scope="{ result }">
-          <h2>
-            <ais-highlight 
-              :result="result" 
-              attribute-name="name">
-            </ais-highlight>
-          </h2>
+          <div class="search-result__item">
+            <div class="search-result__item-info">
+              <img
+                class="search-result__item-image"
+                :src="result.poster"
+                :alt="result.name"/>
+              <div class="search-result__item-meta">
+                <h2 class="search-result__item-title">
+                  <ais-highlight 
+                    :result="result" 
+                    attribute-name="name">
+                  </ais-highlight>
+                </h2>
+                <span>Director: {{result.director}}</span>
+                <span>Stars: {{result.stars}}</span>
+                <span>Genre: {{result.genre}}</span>
+                <span>Score: {{result.metascore}}</span>
+              </div>
+            </div>
+          </div>
         </template>
       </ais-results>
     </ais-index>
@@ -60,5 +74,36 @@ li {
 
 a {
   color: #42b983;
+}
+
+.search-result__item {
+  width: 50%;
+  margin-left: auto;
+  margin-right: auto;
+  display: flex;
+  flex-direction: column;
+}
+
+.search-result__item-title {
+  width: 100%;
+  margin-top: 0;
+  line-height: 1;
+}
+
+.search-result__item-image {
+  object-fit: contain;
+  height: 130px;
+  margin: 20px;
+}
+
+.search-result__item-info {
+  display: flex;
+}
+
+.search-result__item-meta {
+  flex-direction: column;
+  display: flex;
+  text-align: left;
+  margin: 20px;
 }
 </style>
