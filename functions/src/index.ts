@@ -28,7 +28,7 @@ exports.removeMovies = functions.firestore
     .document('movies/{movieId}')
     .onDelete((snap, context) => {
         const data = snap.data();
-        console.log('YOOOOOOO');
+        console.log(snap);
         const objectId = data.id;
         
         return index.deleteObject({
