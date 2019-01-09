@@ -16,10 +16,10 @@ exports.addMovies = functions.firestore
     .document('movies/{movieId}')
     .onCreate((snap, context) => {
         const data = snap.data();
-        const objectId = data.id;
+        const objectID = context.params.movieId
 
         return index.addObject({
-            objectId,
+            objectID,
             ...data
         })
     });
@@ -27,12 +27,8 @@ exports.addMovies = functions.firestore
 exports.removeMovies = functions.firestore
     .document('movies/{movieId}')
     .onDelete((snap, context) => {
-        const data = snap.data();
-        console.log(snap);
-        const objectId = data.id;
-        
-        return index.deleteObject({
-            objectId,
-            ...data
-        })
+        if(snap.exists) {
+            const objectID = context.params.movieId
+            return index.deleteObject(objectID);
+        }
     });
