@@ -12,6 +12,3 @@ yarn-error.log
 *.sln
 
 .env
-.babelrc
-.firebaserc
-.editorconfig
