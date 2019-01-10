@@ -3,30 +3,12 @@
     <ais-index
       :app-id="appId"
       :api-key="apiKey"
-      index-name="movie_title"
-    >
+      index-name="movie_title">
       <ais-search-box></ais-search-box>
       <ais-results>
         <template slot-scope="{ result }">
           <div class="search-result__item">
-            <div class="search-result__item-info">
-              <img
-                class="search-result__item-image"
-                :src="result.poster"
-                :alt="result.name"/>
-              <div class="search-result__item-meta">
-                <h2 class="search-result__item-title">
-                  <ais-highlight 
-                    :result="result" 
-                    attribute-name="name">
-                  </ais-highlight>
-                </h2>
-                <span>Director: {{result.director}}</span>
-                <span>Stars: {{result.stars}}</span>
-                <span>Genre: {{result.genre}}</span>
-                <span>Score: {{result.metascore}}</span>
-              </div>
-            </div>
+            <search-result :result="result" :key="result.objectID"/>
           </div>
         </template>
       </ais-results>
@@ -35,14 +17,18 @@
 </template>
 
 <script>
+import db from './firebaseInit'
+import searchResult from './components/search-result'
+
 export default {
-  name: 'app',
+  components: {
+    searchResult
+  },
+  name: 'App',
   data () {
     return {
       apiKey: ALGOLIA_API_KEY,
       appId: ALGOLIA_APP_ID,
-      algoliaIndexName: 'movie_title',
-      algoliaAttribute: 'name'
     }
   }
 }
@@ -96,26 +82,4 @@ a {
   }
 }
 
-.search-result__item-title {
-  width: 100%;
-  margin-top: 0;
-  line-height: 1; 
-}
-
-.search-result__item-image {
-  object-fit: contain;
-  height: 130px;
-  margin: 20px;
-}
-
-.search-result__item-info {
-  display: flex;
-}
-
-.search-result__item-meta {
-  flex-direction: column;
-  display: flex;
-  text-align: left;
-  margin: 20px;
-}
 </style>
