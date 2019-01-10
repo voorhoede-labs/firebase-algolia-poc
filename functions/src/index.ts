@@ -1,16 +1,17 @@
 import * as functions from 'firebase-functions';
-
 import * as admin from 'firebase-admin';
+import * as algoliasearch from 'algoliasearch';
 
 admin.initializeApp();
 
-const env = functions.config();
-
-import * as algoliasearch from 'algoliasearch';
-
-const client = algoliasearch('I9PO6RR6PN', '1438eb53e2798341a2cf40d288211dc3');
+const client = algoliasearch(
+    functions.config().algolia.app_id,
+    functions.config().algolia.api_key
+);
 
 const index = client.initIndex('movie_title');
+
+exports.testMovies = functions.firestore.document('movies')
 
 exports.addMovies = functions.firestore
     .document('movies/{movieId}')
