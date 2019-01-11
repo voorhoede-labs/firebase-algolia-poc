@@ -8,7 +8,10 @@
       <ais-results>
         <template slot-scope="{ result }">
           <div class="search-result__item">
-            <search-result :result="result" :key="result.objectID"/>
+            <search-result 
+              :result="result"
+              :key="result.objectID"
+              v-if="result" />
           </div>
         </template>
       </ais-results>

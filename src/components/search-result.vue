@@ -1,4 +1,4 @@
-<template>
+<template v-if="data.movies">
   <div class="search-result__item-info">
     <img
         class="search-result__item-image"
@@ -27,41 +27,41 @@ export default {
       type: Object,
       required: true,
     },
-    key: {
-      type: String,
-      required: true,
-    }
   },
   data () {
     return {
       id : this.result.objectID,
-      newData: {},
-      data: {}
+      data: {
+        id: '',
+        movies: {
+          poster: '',
+          name: '',
+          director: '',
+          stars: '',
+          genre: '',
+          metascore: null
+        }
+      }
     }
   },
   methods: {
-    updateData() {
-        this.key += 1;
-    },
     getData() {
-        const movieRefs = db.collection('movies').doc(this.id);
-        const searchResult = movieRefs.get().then(doc => {
+      const movieRefs = db.collection('movies').doc(this.id);
+
+      const searchResult = movieRefs.get().then(doc => {
         const data = {
-            movies: doc.data(),
-            id: this.id
+          movies: doc.data(),
+          id: this.id
         }
-      
+
         return this.data = data 
-        }).catch(function(error) {
-            console.log("Error getting document:", error);
-        });
+      }).catch(function(error) {
+        console.log("Error getting document:", error);
+      });
     }
   },
-  created() {
+  mounted() {
     this.getData();
-  },
-  updated() {
-    this.updateData();
   },
 }
 </script>
