@@ -45,17 +45,15 @@ export default {
 
     const movieRef = db.collection('movies')
       .onSnapshot(newDoc => {
-        // this.listenToResults(newDoc);
-        console.log('yo');
-        this.$forceUpdate();
+        this.listenToResults(newDoc);
       })
   },
   methods: {
-    // listenToResults(doc) {
-    //   doc.docs.forEach( (doc) => {
-        
-    //   })
-    // }
+    listenToResults(doc) {
+      doc.docs.forEach( (doc) => {
+        console.log(doc);
+      })
+    }
   }
 }
  
