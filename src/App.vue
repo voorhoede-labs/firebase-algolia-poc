@@ -7,9 +7,10 @@
       <ais-search-box></ais-search-box>
       <ais-results>
         <template slot-scope="{ result }">
-          <div class="search-result__item">
+          <div 
+          class="search-result__item" >
             <search-result 
-              :result="result"
+              :resultID="result.objectID"
               :key="result.objectID"
               v-if="result" />
           </div>
@@ -30,11 +31,34 @@ export default {
   name: 'App',
   data () {
     return {
+      currentResults: [],
       apiKey: ALGOLIA_API_KEY,
       appId: ALGOLIA_APP_ID,
     }
+  },
+  mounted() {
+    db.collection('movies').get().then(doc => {
+      doc.docs.forEach(doc => {
+        this.currentResults.push({id :doc.id})
+      })
+    })
+
+    const movieRef = db.collection('movies')
+      .onSnapshot(newDoc => {
+        // this.listenToResults(newDoc);
+        console.log('yo');
+        this.$forceUpdate();
+      })
+  },
+  methods: {
+    // listenToResults(doc) {
+    //   doc.docs.forEach( (doc) => {
+        
+    //   })
+    // }
   }
 }
+ 
 </script>
 
 <style>
@@ -49,20 +73,6 @@ export default {
 
 h1, h2 {
   font-weight: normal;
-}
-
-ul {
-  list-style-type: none;
-  padding: 0;
-}
-
-li {
-  display: inline-block;
-  margin: 0 10px;
-}
-
-a {
-  color: #42b983;
 }
 
 .search-result__item {

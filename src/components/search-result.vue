@@ -1,5 +1,5 @@
-<template v-if="data.movies">
-  <div class="search-result__item-info">
+<template>
+  <div class="search-result__item-info" v-if="data.movies">
     <img
         class="search-result__item-image"
         :src="data.movies.poster"
@@ -23,14 +23,14 @@ import db from '../firebaseInit'
 export default {
   name: 'search-result',
   props: {
-    result: {
-      type: Object,
+    resultID: {
+      type: String,
       required: true,
     },
   },
   data () {
     return {
-      id : this.result.objectID,
+      id : this.resultID,
       data: {
         id: '',
         movies: {
@@ -45,10 +45,10 @@ export default {
     }
   },
   methods: {
-    getData() {
-      const movieRefs = db.collection('movies').doc(this.id);
-
-      const searchResult = movieRefs.get().then(doc => {
+    getData(data) {
+        const movieRefs = db.collection('movies').doc(this.id);
+        const searchResult = movieRefs.get().then(doc => {
+        
         const data = {
           movies: doc.data(),
           id: this.id
@@ -58,10 +58,27 @@ export default {
       }).catch(function(error) {
         console.log("Error getting document:", error);
       });
+    },
+    listenToChanges () {
+        const movieRefs = db.collection('movies').doc(this.id);
+        movieRefs.onSnapshot(newDoc => {
+            
+            if (newDoc.data() === undefined) {
+                return this.data.movies = false
+            }
+
+            if(newDoc) {
+                return this.data = {
+                    id: this.id,
+                    movies: newDoc.data()
+                }
+            }
+        })
     }
   },
   mounted() {
     this.getData();
+    this.listenToChanges();
   },
 }
 </script>
