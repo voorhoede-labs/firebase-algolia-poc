@@ -1,5 +1,5 @@
 <template>
-  <div class="search-result__item-info" v-if="data.movies">
+  <div v-if="data.movies" class="search-result__item-info">
     <img
         class="search-result__item-image"
         :src="data.movies.poster"
@@ -47,26 +47,24 @@ export default {
   methods: {
     getData(data) {
         const movieRefs = db.collection('movies').doc(this.id);
-        const searchResult = movieRefs.get().then(doc => {
-        
-        const data = {
-          movies: doc.data(),
-          id: this.id
-        }
-
+        const searchResult = movieRefs.get()
+        .then(doc => {
+            const data = {
+                movies: doc.data(),
+                id: this.id
+            }
         return this.data = data 
-      }).catch(function(error) {
-        console.log("Error getting document:", error);
+      })
+        .catch(function(error) {
+          console.log("Error getting document:", error);
       });
     },
     listenToChanges () {
         const movieRefs = db.collection('movies').doc(this.id);
         movieRefs.onSnapshot(newDoc => {
-            
             if (newDoc.data() === undefined) {
                 return this.data.movies = false
             }
-
             if(newDoc) {
                 return this.data = {
                     id: this.id,
@@ -79,7 +77,7 @@ export default {
   mounted() {
     this.getData();
     this.listenToChanges();
-  },
+  }
 }
 </script>
 
