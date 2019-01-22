@@ -60,7 +60,13 @@ module.exports = {
 module.exports.plugins = (module.exports.plugins || []).concat([
   new webpack.DefinePlugin({
     ALGOLIA_APP_ID: JSON.stringify(dotenv.parsed.ALGOLIA_APP_ID),
-    ALGOLIA_API_KEY: JSON.stringify(dotenv.parsed.ALGOLIA_API_KEY)
+    ALGOLIA_API_KEY: JSON.stringify(dotenv.parsed.ALGOLIA_API_KEY),
+    FIRESTORE_API_KEY: JSON.stringify(dotenv.parsed.FIRESTORE_API_KEY),
+    FIRESTORE_AUTHDOMAIN: JSON.stringify(dotenv.parsed.FIRESTORE_AUTHDOMAIN),
+    FIRESTORE_DATABASE_URL: JSON.stringify(dotenv.parsed.FIRESTORE_DATABASE_URL),
+    FIRESTORE_PROJECTID: JSON.stringify(dotenv.parsed.FIRESTORE_PROJECTID),
+    FIRESTORE_STORAGEBUCKET: JSON.stringify(dotenv.parsed.FIRESTORE_STORAGEBUCKET),
+    FIRESTORE_MESSAGING_SENDER_ID: JSON.stringify(dotenv.parsed.FIRESTORE_MESSAGING_SENDER_ID),
   })
 ])
 
