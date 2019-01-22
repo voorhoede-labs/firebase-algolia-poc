@@ -25,10 +25,10 @@ import db from './firebaseInit'
 import searchResult from './components/search-result'
 
 export default {
+  name: 'App',
   components: {
     searchResult
   },
-  name: 'App',
   data () {
     return {
       currentResults: [],

@@ -1,12 +1,13 @@
 var path = require('path')
 var webpack = require('webpack')
 var dotenv = require('dotenv-safe').config({path: __dirname + '/.env'});
+const UglifyJsPlugin = require('uglifyjs-webpack-plugin')
 
 module.exports = {
   entry: './src/main.js',
   output: {
-    path: path.resolve(__dirname, './dist'),
-    publicPath: '/dist/',
+    path: path.resolve(__dirname, './public'),
+    publicPath: '/public/',
     filename: 'build.js'
   },
   module: {
@@ -17,7 +18,8 @@ module.exports = {
           'vue-style-loader',
           'css-loader'
         ],
-      },      {
+      },
+      {
         test: /\.vue$/,
         loader: 'vue-loader',
         options: {
@@ -71,10 +73,12 @@ if (process.env.NODE_ENV === 'production') {
         NODE_ENV: '"production"'
       },
     }),
-    new webpack.optimize.UglifyJsPlugin({
-      sourceMap: true,
-      compress: {
-        warnings: false
+    new UglifyJsPlugin({
+      "uglifyOptions": {
+        compress: {
+            warnings: false
+        },
+        sourceMap: true
       }
     }),
     new webpack.LoaderOptionsPlugin({

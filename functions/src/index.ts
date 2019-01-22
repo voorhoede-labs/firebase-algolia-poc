@@ -21,7 +21,9 @@ exports.addMovies = functions.firestore
 
         return index.addObject({
             objectID,
-            ...data
+            ...data,
+            poster: null,
+            metascore: null
         })
     });
 
@@ -40,7 +42,9 @@ exports.updateMovies = functions.firestore
         const newData = change.after.data();
         const object = {
             objectID: context.params.movieId,
-            ...newData
+            ...newData,
+            poster: null,
+            metascore: null
         }
 
         return index.partialUpdateObject(object);

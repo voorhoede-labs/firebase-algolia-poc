@@ -14,3 +14,4 @@ yarn-error.log
 .env
 functions/lib
 firebase-debug.log
+.firebase
