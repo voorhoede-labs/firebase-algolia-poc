@@ -33,17 +33,7 @@ export default {
   data () {
     return {
       id : this.resultID,
-      data: {
-        id: '',
-        movies: {
-          poster: '',
-          name: '',
-          director: '',
-          stars: '',
-          genre: '',
-          metascore: null
-        }
-      }
+      data: {}
     }
   },
   methods: {
