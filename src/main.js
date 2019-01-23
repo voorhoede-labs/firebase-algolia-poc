@@ -1,10 +1,10 @@
 import Vue from 'vue'
-import App from './App.vue'
+import Search from './search.vue'
 import InstantSearch from 'vue-instantsearch'
 
 Vue.use(InstantSearch)
 
 new Vue({
-  el: '#app',
-  render: h => h(App)
+  el: '#search-ui',
+  render: h => h(Search)
 })

@@ -1,5 +1,5 @@
 <template>
-  <div id="app">
+  <div id="search-ui" class="search-ui">
     <ais-index
       :app-id="appId"
       :api-key="apiKey"
@@ -25,7 +25,7 @@ import db from './firebaseInit'
 import searchResult from './components/search-result'
 
 export default {
-  name: 'App',
+  name: 'search',
   components: {
     searchResult
   },
@@ -60,7 +60,7 @@ export default {
 </script>
 
 <style>
-#app {
+.search-ui {
   font-family: 'Avenir', Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
