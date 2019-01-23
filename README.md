@@ -46,10 +46,15 @@ firebase functions:config:set algolia.app_id="APP_ID" algolia.api_key="API_KEY"
 Firestore generates the following values that need to be added to the .env file:
 
 FIRESTORE_API_KEY=''
+
 FIRESTORE_AUTHDOMAIN=''
+
 FIRESTORE_DATABASE_URL=''
+
 FIRESTORE_PROJECTID=''
+
 FIRESTORE_STORAGEBUCKET=''
+
 FIRESTORE_MESSAGING_SENDER_ID=''
 
 These values can be found in the console of firebase then in the settings of you project: https://firebase.google.com/docs/web/setup?authuser=0
