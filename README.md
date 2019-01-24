@@ -36,7 +36,7 @@ now wen you run the npm run dev it should be connected to your firestore databas
 
 ## Algolia Requirements
 
-Start by creating a algolia account(you can use a free account). In the dashboard section of the site you can create a new index name it: movie_title. Afterwards you can go to the API keys section of the dashboard. Here you can find the api key and the app id. Add these keys to your .env file.
+Start by creating a algolia account(you can use a free account). In the dashboard section of the site you can create a new index name it: movie_title. Afterwards you can go to the API keys section of the dashboard. Here you can find the admin api key and the app id. Add these keys to your .env file.
 
 here are some more resources on [algolia, firestore and cloud functions](https://www.algolia.com/doc/guides/sending-and-managing-data/send-and-update-your-data/tutorials/firebase-algolia/#more-resources) and here from [firestore's perspective](https://firebase.google.com/docs/firestore/solutions/search).
 
