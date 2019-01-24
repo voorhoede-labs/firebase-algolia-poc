@@ -41,7 +41,7 @@ Start by creating a algolia account(you can use a free account). In the dashboar
 here are some more resources on [algolia, firestore and cloud functions](https://www.algolia.com/doc/guides/sending-and-managing-data/send-and-update-your-data/tutorials/firebase-algolia/#more-resources).
 
 ## Cloud Functions
-In this repository the cloud functions are already there. But if you would like  to have more information or start from scratch you can follow [the setup guide by Google](https://firebase.google.com/docs/functions/get-started).
+In this repository the cloud functions are already there. But if you would like  to have more information or start from scratch you can follow [the setup guide by Google](https://firebase.google.com/docs/functions/get-started) and here from [firestore's perspective](https://firebase.google.com/docs/firestore/solutions/search).
 
 ``` bash
 #install latest versions
