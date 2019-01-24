@@ -5,47 +5,47 @@ import * as algoliasearch from 'algoliasearch';
 admin.initializeApp();
 
 const client = algoliasearch(
-    functions.config().algolia.app_id,
-    functions.config().algolia.api_key
+	functions.config().algolia.app_id,
+	functions.config().algolia.api_key
 );
 
-const index = client.initIndex('movie_title');
+const index = client.initIndex('movie_title_example');
 
 exports.testMovies = functions.firestore.document('movies')
 
 exports.addMovies = functions.firestore
-    .document('movies/{movieId}')
-    .onCreate((snap, context) => {
-        const data = snap.data();
-        const objectID = context.params.movieId
+	.document('movies/{movieId}')
+	.onCreate((snap, context) => {
+		const data = snap.data();
+		const objectID = context.params.movieId
 
-        return index.addObject({
-            objectID,
-            ...data,
-            poster: null,
-            metascore: null
-        })
-    });
+		return index.addObject({
+				objectID,
+				...data,
+				poster: null,
+				metascore: null
+		})
+	});
 
 exports.removeMovies = functions.firestore
-    .document('movies/{movieId}')
-    .onDelete((snap, context) => {
-        if(snap.exists) {
-            const objectID = context.params.movieId
-            return index.deleteObject(objectID);
-        }
-    });
+	.document('movies/{movieId}')
+	.onDelete((snap, context) => {
+		if(snap.exists) {
+			const objectID = context.params.movieId
+			return index.deleteObject(objectID);
+		}
+	});
 
 exports.updateMovies = functions.firestore
-    .document('movies/{movieId}')
-    .onUpdate((change, context) => {
-        const newData = change.after.data();
-        const object = {
-            objectID: context.params.movieId,
-            ...newData,
-            poster: null,
-            metascore: null
-        }
+	.document('movies/{movieId}')
+	.onUpdate((change, context) => {
+		const newData = change.after.data();
+		const object = {
+			objectID: context.params.movieId,
+			...newData,
+			poster: null,
+			metascore: null
+		}
 
-        return index.partialUpdateObject(object);
-    })
+		return index.partialUpdateObject(object);
+	})
