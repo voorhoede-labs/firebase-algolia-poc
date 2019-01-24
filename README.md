@@ -67,7 +67,7 @@ nvm install v6.11.5
 nvm use v6.11.5
 ```
 
-In the command line cd to the functions folder. The Cloud functions need to be configured with Algolia's API. Do this by typing the following:
+In the command line cd to the functions folder dont forget to do this is very important. The Cloud functions need to be configured with Algolia's API. Do this by typing the following:
 
 ``` bash
 #install the dependencies in the functions folder
