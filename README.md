@@ -12,7 +12,7 @@ npm i
 npm run dev
 ```
 
-## Cloud firestore Requirements
+## Cloud Firestore Requirements
 
 Start by creating a firebase account.
 
