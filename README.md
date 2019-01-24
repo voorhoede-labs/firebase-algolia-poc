@@ -16,9 +16,9 @@ npm run dev
 
 Start by creating a firebase account.
 
-Create a new project. Click on database you would likely see a banner that says get started with firestore. Click on that then select test mode.
+Create a new project. Click on database here you will be able to start a firestore database. Click on that then select test mode.
 
-Before connecting Cloud firestore to your application, be sure to have a Blaze or Flame pricing plan with Firebase. After this you can start creating a .env file from the .env.example file. In the example file there are values you need to provide and can be found in your firebase settings for more information checkout this [firebase set up page](https://firebase.google.com/docs/web/setup?authuser=0#run_a_local_web_server_for_development). In the settings there is a your apps section that shows the  ios, android and web icons. Click on the web variant and you will see your values you need to copy to .env.
+Before connecting Cloud firestore to your application, be sure to have a Blaze or Flame pricing plan with Firebase to enable outbound requests. After this you can start creating a .env file from the .env.example file. In the example file there are values you need to provide and can be found in your firebase settings for more information checkout this [firebase set up page](https://firebase.google.com/docs/web/setup?authuser=0#run_a_local_web_server_for_development). In the settings there is a your apps section that shows the  ios, android and web icons. Click on the web variant and you will see your values you need to copy to .env.
 
 Be sure to create a firestore movies collection containing documents of movies with a title field. If you want to see other fields I used checkout the search-result.vue component. 
 
