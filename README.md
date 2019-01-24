@@ -20,7 +20,7 @@ Create a new project. Click on database here you will be able to start a firesto
 
 Before connecting Cloud firestore to your application, be sure to have a Blaze or Flame pricing plan with Firebase to enable outbound requests. After this you can start creating a .env file from the .env.example file. In the example file there are values you need to provide and can be found in your firebase settings for more information checkout this [firebase set up page](https://firebase.google.com/docs/web/setup?authuser=0#run_a_local_web_server_for_development). In the settings there is a your apps section that shows the  ios, android and web icons. Click on the web variant and you will see your values you need to copy to .env.
 
-Be sure to create a firestore movies collection containing documents of movies with a title field. If you want to see other fields I used checkout the search-result.vue component. 
+Be sure to create a firestore movies collection containing documents of movies with a title field. If you want to see other fields I used then checkout the search-result.vue component. 
 
 Afterwards install the firebase command line tools and login to your firebase account.
 
@@ -73,7 +73,7 @@ In the command line cd to the functions folder dont forget to do this is very im
 #install the dependencies in the functions folder
 npm i
 
-# provide the algolia APPI and ADMIN API KEY we also added previously in the .env file
+# provide the algolia APP ID and ADMIN API KEY we also added previously in the .env file
 firebase functions:config:set algolia.app_id="APP_ID" algolia.api_key="API_KEY"
 ```
 
