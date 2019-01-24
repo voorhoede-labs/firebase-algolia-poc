@@ -59,6 +59,14 @@ npm install firebase-functions@latest firebase-admin@latest --save
 firebase init functions
 ```
 
+Cloud functions only supports node 6 as of this time. So type:
+
+``` bash
+nvm install v6.11.5
+
+nvm use v6.11.5
+```
+
 In the command line cd to the functions folder. The Cloud functions need to be configured with Algolia's API. Do this by typing the following:
 
 ``` bash
