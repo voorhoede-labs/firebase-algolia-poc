@@ -77,6 +77,14 @@ npm i
 firebase functions:config:set algolia.app_id="APP_ID" algolia.api_key="API_KEY"
 ```
 
+if you want to log cloud functions locally with connected algolia you will need to run this command in the current functions folder:
+
+``` bash
+firebase functions:config:get > .runtimeconfig.json
+```
+
+extra information can be found [here](https://firebase.google.com/docs/functions/local-emulator#install_and_configure_the_cloud_functions_shell)
+
 Now we can use the firebase.config().app_id and firebase.config().api_key to reference these values in the functions folder. This is done because after we deploy these functions it can access these api keys.
 
 make sure the name of the index your using is added here in the index.ts file in cloud functions:
