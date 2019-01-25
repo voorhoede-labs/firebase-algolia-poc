@@ -9,9 +9,7 @@ const client = algoliasearch(
 	functions.config().algolia.api_key
 );
 
-const index = client.initIndex('movie_title_example');
-
-exports.testMovies = functions.firestore.document('movies')
+const index = client.initIndex('movie_title');
 
 exports.addMovies = functions.firestore
 	.document('movies/{movieId}')
@@ -24,7 +22,7 @@ exports.addMovies = functions.firestore
 				...data,
 				poster: null,
 				metascore: null
-		})
+		});
 	});
 
 exports.removeMovies = functions.firestore

@@ -3,17 +3,17 @@
     <ais-index
       :app-id="appId"
       :api-key="apiKey"
-      index-name="movie_title">
+      :index-name="indexName"
+      ref="aisIndex"
+    >
       <ais-search-box></ais-search-box>
-      <ais-results>
+      <ais-results ref="searchResults">
         <template slot-scope="{ result }">
-          <div 
-          class="search-result__item" >
-            <search-result 
-              :resultID="result.objectID"
-              :key="result.objectID"
-              v-if="result" />
-          </div>
+          <search-result
+            :resultID="result.objectID"
+            :key="result.objectID"
+            v-if="result"
+          />
         </template>
       </ais-results>
     </ais-index>
@@ -31,28 +31,26 @@ export default {
   },
   data () {
     return {
-      currentResults: [],
       apiKey: ALGOLIA_API_KEY,
       appId: ALGOLIA_APP_ID,
+      indexName: 'movie_title',
     }
   },
   mounted() {
-    db.collection('movies').get().then(doc => {
-      doc.docs.forEach(doc => {
-        this.currentResults.push({id :doc.id})
-      })
-    })
-
     const movieRef = db.collection('movies')
-      .onSnapshot(newDoc => {
-        this.listenToResults(newDoc);
+      .onSnapshot( newDoc => {
+         newDoc.docChanges().forEach((change) => {
+           change.type === "added" ? this.refreshResults() : null
+        })
       })
   },
   methods: {
-    listenToResults(doc) {
-      doc.docs.forEach( (doc) => {
-        console.log(doc);
-      })
+    refreshResults () {
+      if (this.$refs.aisIndex) {
+        const searchStore = this.$refs.aisIndex._localSearchStore
+        searchStore.clearCache()
+        searchStore.refresh()
+      }
     }
   }
 }
