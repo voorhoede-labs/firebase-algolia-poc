@@ -1,6 +1,6 @@
 # Full-text-search proof of concept
 
-A proof of concept created with Cloud Firestore, Cloud functions and Algolia search engine. It's a showcase of creating a full-text-search on a collection of movies.
+This should be a step by step guide into directing someone to create a full-text-search proof of concept.
 
 ## Getting started
 
