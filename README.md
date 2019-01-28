@@ -1,6 +1,6 @@
 # Full-text-search proof of concept
 
-A proof of concept created with Cloud Firestore, Cloud functions and Algolia search engine. It's a showcase of creating a full-text-search on a collection of movies.
+This should be a step by step guide into directing someone to create a full-text-search proof of concept.
 
 ## Getting started
 
@@ -76,6 +76,14 @@ npm i
 # provide the algolia APP ID and ADMIN API KEY we also added previously in the .env file
 firebase functions:config:set algolia.app_id="APP_ID" algolia.api_key="API_KEY"
 ```
+
+if you want to log cloud functions locally with connected algolia you will need to run this command in the current functions folder:
+
+``` bash
+firebase functions:config:get > .runtimeconfig.json
+```
+
+extra information can be found [here](https://firebase.google.com/docs/functions/local-emulator#install_and_configure_the_cloud_functions_shell)
 
 Now we can use the firebase.config().app_id and firebase.config().api_key to reference these values in the functions folder. This is done because after we deploy these functions it can access these api keys.
 
